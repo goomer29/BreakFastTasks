@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 
@@ -89,6 +90,17 @@ namespace CoreCollectionsAsync
                 Bat.Usage();
             }
         }
+        public async Task StartEngineAsync()
+        {
+            engingRunning = true;
+            while (Bat.Percent > 15)
+            {
+                Console.WriteLine($"CAR WITH ID:{this.id} {Bat.Percent}% Thread: {Thread.CurrentThread.ManagedThreadId}");
+                await Task.Delay(1000);
+                Bat.Usage();
+            }
+        }
+      
         private void Battery_ShutDown(object? sender, EventArgs e)
         {
             //  Console.Clear();
